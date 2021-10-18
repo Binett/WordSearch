@@ -9,7 +9,11 @@ namespace WordSearch
     {
         static void Main(string[] args)
         {
-            var test = Filereader.ReadText("Data\\testOne.txt").ToList();
+            char[] text = File.ReadAllText("Data/testOne.txt").ToArray();
+            foreach (var item in text)
+            {
+                Console.WriteLine(item);
+            }
         }
     }
 }
