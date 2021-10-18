@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "WordSearch": {
+      "commandName": "Project",
+      "remoteDebugEnabled": false
+    }
+  }
+}
