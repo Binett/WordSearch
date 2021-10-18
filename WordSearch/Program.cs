@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using WordSearch.Utitlitys;
 
 namespace WordSearch
@@ -15,21 +16,28 @@ namespace WordSearch
             var text2 = Filereader.TextToList(filepath2);
             var text3 = Filereader.TextToList(filepath3);
 
-            Console.WriteLine("Enter a searhword");
-            var searchWord = Console.ReadLine();
-
-            if (text1.Contains(searchWord))
-            {
-                var count = 0;
-                for (int i = 0; i < text1.Count; i++)
-                {
-                    if (text1[i] == searchWord)
-                        Console.WriteLine(text1[i]);
-                }
-                Console.WriteLine($"Text 1 {searchWord} occured {count} times");
-            }
+            var num1 = HowManyWords(text1);
+            var num2 = HowManyWords(text2);
+            var num3 = HowManyWords(text3);
 
             Console.ReadLine();
+        }
+
+        public static int HowManyWords(List<string> textList)
+        {
+            Console.WriteLine("Enter a searchword");
+            var searchWord = Console.ReadLine();
+            if (textList.Contains(searchWord))
+            {
+                var count = 0;
+                for (int i = 0; i < textList.Count; i++)
+                {
+                    if (textList[i] == searchWord)
+                        count++;
+                }
+                return count;
+            }
+            return 0;
         }
     }
 }
