@@ -6,7 +6,7 @@ namespace WordSearch
     {
         static void Main(string[] args)
         {
-
+            Console.WriteLine("Hello Tobias");
         }
     }
 }
