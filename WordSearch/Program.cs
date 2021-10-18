@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using WordSearch.Utitlitys;
@@ -9,11 +10,9 @@ namespace WordSearch
     {
         static void Main(string[] args)
         {
-            char[] text = File.ReadAllText("Data/testOne.txt").ToArray();
-            foreach (var item in text)
-            {
-                Console.WriteLine(item);
-            }
+            var text = Filereader.TextToList("Data/testThree.txt");
+
+            Console.WriteLine(string.Join(" ", text));
         }
     }
 }
