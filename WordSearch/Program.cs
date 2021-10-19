@@ -1,5 +1,5 @@
 ﻿using System;
-using System.IO;
+using System.Collections.Generic;
 using System.Linq;
 using WordSearch.Utitlitys;
 
@@ -9,16 +9,30 @@ namespace WordSearch
     {
         static void Main(string[] args)
         {
-            
+            const string filepath1 = "Data/testOne.txt";
+            const string filepath2 = "Data/testTwo.txt";
+            const string filepath3 = "Data/testThree.txt";
+            const string filepath4 = "Data/testThree.txt";
 
+            var text1 = Filereader.TextToList(filepath1);
+            var text2 = Filereader.TextToList(filepath2);
+            var text3 = Filereader.TextToList(filepath3);
+            var text4 = Filereader.TextToList(filepath4);
 
-            char[] text = File.ReadAllText("Data/testOne.txt").ToArray();
-            foreach (var item in text)
+            Console.WriteLine("Enter a searchword");
+            var searchWord = Console.ReadLine();
+
+            var num1 = HowManyWords(text1, searchWord);
+            var num2 = HowManyWords(text2, searchWord);
+            var num3 = HowManyWords(text3, searchWord);
+            var num4 = HowManyWords(text4, searchWord);
+
+            var result = new List<Result>
             {
-                new Result("List1", num1),
-                new Result("List2", num2),
-                new Result("List3", num3),
-                new Result("List4", num4 ),
+                new Result{Name = "List1", Count= num1},
+                new Result{Name = "List2", Count= num2},
+                new Result{Name = "List3", Count= num3},
+                new Result{Name = "List4", Count= num4},
             };
 
             var sortedRes = result.OrderByDescending(x =>x.Count);
@@ -28,15 +42,6 @@ namespace WordSearch
                 Console.WriteLine($"{item.Name} contains {item.Count} times {searchWord}");
             }
 
-
-            text2.Sort();
-
-            var number = int.Parse(Console.ReadLine());
-
-            for (int i = 0; i < number; i++)
-            {
-                Console.WriteLine(text2[i]);
-            }
 
             Console.ReadLine();
         }
@@ -54,6 +59,7 @@ namespace WordSearch
                 }
                 return count;
             }
+            return 0;
         }
     }
 }
