@@ -8,14 +8,11 @@ namespace WordSearch
 {
     public class Result
     {
-<<<<<<< HEAD
         public Result(string name, int count)
         {
             Name = name;
             Count = count;
         }
-=======
->>>>>>> master
         public string Name { get; set; }
         public int Count { get; set; }
     }
