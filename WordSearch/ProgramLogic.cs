@@ -14,9 +14,9 @@ namespace WordSearch
             Console.Write("Enter a word: ");
             var searchWord = Console.ReadLine();
 
-            var num1 = Program.HowManyWords(ListOne,searchWord);
-            var num2 = Program.HowManyWords(ListTwo,searchWord);
-            var num3 = Program.HowManyWords(ListThree,searchWord);
+            var num1 = HowManyWords(ListOne,searchWord);
+            var num2 = HowManyWords(ListTwo,searchWord);
+            var num3 = HowManyWords(ListThree,searchWord);
 
             Tuple<string, int>[] results =
             {
@@ -31,6 +31,21 @@ namespace WordSearch
             {
                 Console.WriteLine($"{searchWord} occured in {item.Item1}: {item.Item2} times");
             }
+        }
+
+        public  int HowManyWords(List<string> textList, string searchWord)
+        {
+            if (textList.Contains(searchWord))
+            {
+                var count = 0;
+                for (int i = 0; i < textList.Count; i++)
+                {
+                    if (textList[i] == searchWord)
+                        count++;
+                }
+                return count;
+            }
+            return 0;
         }
     }
 }
