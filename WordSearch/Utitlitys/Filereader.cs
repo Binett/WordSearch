@@ -30,7 +30,7 @@ namespace WordSearch.Utitlitys
             }
             catch (Exception e)
             {
-                Debug.WriteLine(e.Message);
+                Console.WriteLine("Kunde inte läsa in textfilen: " + e.Message);
             }
             return new List<string> { };
         }

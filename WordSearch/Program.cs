@@ -10,12 +10,14 @@ namespace WordSearch
     {
         static void Main(string[] args)
         {
-           
+            Seeder.Seed();
+            ProgramLogic pl = new();
+            pl.Run();
+            
         }
 
         public static int HowManyWords(List<string> textList, string searchWord)
         {
-
             if (textList.Contains(searchWord))
             {
                 var count = 0;
