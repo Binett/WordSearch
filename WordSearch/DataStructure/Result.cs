@@ -8,20 +8,36 @@ namespace WordSearch.DataStructure
 {
     public class Result
     {
-        private Node rootNode;        
+        private Node root;
 
         public string Word { get; set; }
-        public int[] WordCount { get; set; }
-        public string[] FileName { get; set; }
+        public string Results { get; set; }
 
-        public Result(string word, int[] count, string[] fileName)
+     
+        public Result(string word, string results)
         {
             Word = word;
-            WordCount = count;
-            FileName = fileName;
+            Results = results;
         }
 
+        public void Insert(string searchword, string result)
+        {
+            if (root != null)
+            {
+                root.Insert(searchword, result);
+            }
+            else
+            {
+                root = new Node(new Result(searchword, result));
+            }
+        }
 
-
+        public void PrintTree()
+        {
+            if (root != null)
+            {
+                root.PrintNodes();
+            }
+        }
     }
 }

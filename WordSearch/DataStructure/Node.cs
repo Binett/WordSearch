@@ -9,37 +9,86 @@ namespace WordSearch.DataStructure
     public class Node
     {
         private readonly Result _result;
-        private  Node _rightNode;
-        private  Node _leftNode;
+        private Node Left { get; set; }
+        private Node Right { get; set; }
 
         public Node(Result result)
         {
+
             _result = result;
         }
 
-        public Node GetLeftNode()
+        public void Insert(string word, string result)
         {
-            return _leftNode;
-        }
-        public Node GetRightNode()
-        {
-            return _rightNode;
+            //int compare = word.CompareTo(_result.Word);
+            if (word[0] <= 'n')
+            {
+                if (Left == null)
+                {
+                    Left = new Node(new Result(word, result));
+                }
+                else
+                {
+                    Left.Insert(word, result);
+                }
+            }
+            else
+            {
+                if (Right == null)
+                {
+                    Right = new Node(new Result(word, result));
+                }
+                else
+                {
+                    Right.Insert(word, result);
+                }
+            }
         }
 
-        public Node SetLeftNode(Node newNode)
+
+        public void PrintNodes()
         {
-            return _leftNode = newNode;
+            Console.WriteLine($"{_result.Word} \n {_result.Results}");
+
+            if (Left != null)
+            {
+                Left.PrintNodes();
+            }
+            if (Right != null)
+            {
+                Right.PrintNodes();
+            }
         }
 
-        public Node SetRightNode(Node newNode)
-        {
-            return _rightNode = newNode;
-        }
 
-        public override string ToString()
-        {
-            return (_result != null) ? $"{_result.Word} {string.Join(" ",_result.WordCount) + string.Join("}\n",_result.FileName)}" : "Empty";
-        }
+        //public Node(Result result)
+        //{
+        //    _result = result;
+        //}
+
+        //public Node GetLeftNode()
+        //{
+        //    return _leftNode;
+        //}
+        //public Node GetRightNode()
+        //{
+        //    return _rightNode;
+        //}
+
+        //public Node SetLeftNode(Node newNode)
+        //{
+        //    return _leftNode = newNode;
+        //}
+
+        //public Node SetRightNode(Node newNode)
+        //{
+        //    return _rightNode = newNode;
+        //}
+
+        //public override string ToString()
+        //{
+
+        //}
 
     }
 }
