@@ -13,11 +13,12 @@ namespace WordSearch.DataStructure
         public string Word { get; set; }
         public string Results { get; set; }
 
-     
+      
         public Result(string word, string results)
         {
             Word = word;
             Results = results;
+            //root = new Node(word, results);
         }
 
         public void Insert(string searchword, string result)

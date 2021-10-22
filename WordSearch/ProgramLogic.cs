@@ -10,7 +10,7 @@ namespace WordSearch
 {
     public class ProgramLogic
     {
-        Result res = new("Hallå","4 Bugg och en coca cola" );
+        Result res = new("n", "Kalas");
 
 
         public void Run()

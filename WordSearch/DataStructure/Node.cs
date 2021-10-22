@@ -21,7 +21,7 @@ namespace WordSearch.DataStructure
         public void Insert(string word, string result)
         {
             //int compare = word.CompareTo(_result.Word);
-            if (word[0] <= 'n')
+            if (word[0] <= this._result.Word[0])
             {
                 if (Left == null)
                 {
