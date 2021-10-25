@@ -1,25 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
-using WordSearch.DataStructure;
-using static WordSearch.Utitlitys.Seeder;
-using static WordSearch.Utitlitys.InputHelper;
 using System.Linq;
+using WordSearch.DataStructure;
+using static WordSearch.Utitlitys.InputHelper;
+using static WordSearch.Utitlitys.Seeder;
 
 namespace WordSearch
 {
     public class ProgramLogic
     {
-        readonly Result res = new();
+        private readonly Result res = new();
 
-        internal void PrintResults()
+        internal int HowManyWords(List<string> textList, string searchWord)
         {
-            res.PrintTree();
+            if (!textList.Contains(searchWord)) return 0;
+            var count = 0;
+            for (int i = textList.Count - 1; i >= 0; i--)
+            {
+                if (textList[i] == searchWord)
+                    count++;
+            }
+            return count;
         }
-
 
         internal void PrintFromList(List<string> list, int input)
         {
-            list.Sort();
             if (input <= list.Count)
             {
                 for (int i = 0; i < input; i++)
@@ -34,10 +39,18 @@ namespace WordSearch
             }
         }
 
+        internal void PrintResults()
+        {
+            Console.Clear();
+            res.PrintTree();
+            Console.ReadLine();
+        }
+
         internal void Search()
         {
             while (true)
             {
+                Console.Clear();
                 Console.Write("[e] to go back\nEnter a word: ");
                 var searchWord = Console.ReadLine();
                 if (!WordSearchInputHelper(searchWord, out var errorMsg))
@@ -45,45 +58,43 @@ namespace WordSearch
                     Console.WriteLine(errorMsg);
                     break;
                 }
-                if (searchWord == "e")
+                else if (searchWord == "e")
                 {
                     break;
                 }
-
-                var num1 = HowManyWords(ListOne, searchWord);
-                var num2 = HowManyWords(ListTwo, searchWord);
-                var num3 = HowManyWords(ListThree, searchWord);
-
-                Tuple<string, int>[] results =
-                {
-                new("ListOne: ", num1),
-                new("ListTwo: ", num2),
-                new("ListThree: ", num3),
-                };
-
-                var sorted = results.OrderByDescending(c => c.Item2).ToArray();
-                res.Insert(searchWord, sorted);
-                Console.WriteLine("You Searched for: " + searchWord+ "\n");
-                foreach (var (item1, item2) in sorted)
-                {
-                    Console.WriteLine($"{item1} contained {item2} times");
-                }
-                Console.ReadKey();
-                Console.Clear();
+                res.Insert(searchWord, OrderedResults(searchWord));
+                PrintResult(searchWord, OrderedResults(searchWord));
+                Console.ReadLine();
             }
         }
 
-
-        internal int HowManyWords(List<string> textList, string searchWord)
+        private Tuple<string, int>[] OrderedResults(string searchWord)
         {
-            if (!textList.Contains(searchWord)) return 0;
-            var count = 0;
-            for (int i = textList.Count - 1; i >= 0; i--)
+            return Results(searchWord).OrderByDescending(c => c.Item2).ToArray();
+        }
+
+        private void PrintResult(string searchWord, Tuple<string, int>[] results)
+        {
+            Console.WriteLine("\nYou Searched for: " + searchWord + "\n");
+            foreach (var (item1, item2) in results)
             {
-                if (textList[i] == searchWord)
-                    count++;
+                Console.WriteLine($"{item1} contained {searchWord} {item2} times");
             }
-            return count;
+        }
+
+        private Tuple<string, int>[] Results(string searchWord)
+        {
+            var wordCountListOne = HowManyWords(ListOne, searchWord);
+            var wordCountListTwo = HowManyWords(ListTwo, searchWord);
+            var WordCountListThree = HowManyWords(ListThree, searchWord);
+
+            Tuple<string, int>[] results =
+            {
+                new("ListOne", wordCountListOne),
+                new("ListTwo", wordCountListTwo),
+                new("ListThree", WordCountListThree),
+                };
+            return results;
         }
     }
 }
