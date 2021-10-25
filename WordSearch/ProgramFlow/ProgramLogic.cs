@@ -14,20 +14,11 @@ namespace WordSearch
         {
             res.PrintTree();
         }
-
-        internal void SortSort<T>(IList<T> list)
-        {
-            List<T> tmp = new List<T>(list);
-            tmp.Sort();
-            for (int i = 0; i < tmp.Count; i++)
-            {
-                list[i] = tmp[i];
-            }
-        }
+       
 
         internal void PrintFromList(List<string> list, int input)
         {
-            SortSort(list);
+            list.Sort();
             if (input <= list.Count)
             {
                 for (int i = 0; i < input; i++)
