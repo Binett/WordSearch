@@ -18,9 +18,9 @@ namespace WordSearch.Utitlitys
 
         public static void Seed()
         {
-            const string filepathOne = "Data\\testOne.txt";
-            const string filepathTwo = "Data\\testTwo.txt";
-            const string filepathThree = "Data\\testThree.txt";
+            const string filepathOne = "Data\\TextOne.txt";
+            const string filepathTwo = "Data\\TextTwo.txt";
+            const string filepathThree = "Data\\TextThree.txt";
 
             listOne = Filereader.TextToList(filepathOne);
             listTwo = Filereader.TextToList(filepathTwo);
