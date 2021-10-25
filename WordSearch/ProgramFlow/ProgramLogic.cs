@@ -10,6 +10,8 @@ namespace WordSearch
     public class ProgramLogic
     {
         readonly Result res = new();
+        
+        
         internal void PrintResults()
         {
             res.PrintTree();
@@ -35,9 +37,8 @@ namespace WordSearch
             while (true)
             {
                 Console.Write("[e] to go back\nEnter a word: ");
-                var errorMsg = "";
                 var searchWord = Console.ReadLine();
-                if (!WordSearchInputHelper(searchWord, out errorMsg))
+                if (!WordSearchInputHelper(searchWord, out string errorMsg))
                 {
                     Console.WriteLine(errorMsg);
                     break;

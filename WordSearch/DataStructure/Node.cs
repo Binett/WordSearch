@@ -46,8 +46,6 @@ namespace WordSearch.DataStructure
             }
         }
 
-       
-
         public void PrintNodes()
         {
             Console.WriteLine($"{_word}");
@@ -58,12 +56,10 @@ namespace WordSearch.DataStructure
 
             if (Left != null)
             {
-                Console.WriteLine("Left Node: \n");
                 Left.PrintNodes();
             }
             if (Right != null)
             {
-                Console.WriteLine("Right Node: \n");
                 Right.PrintNodes();
             }
         }

@@ -1,58 +1,65 @@
 ﻿using System;
 using static WordSearch.Utitlitys.Seeder;
+using static WordSearch.Utitlitys.InputHelper;
 
 namespace WordSearch.ProgramFlow
 {
     public class Menues
     {
-        private ProgramLogic pl = new();
+        private readonly ProgramLogic pl = new();
 
         public void Run()
         {
             while (true)
             {
                 Console.WriteLine("1.search\n2.Print results\n3. Print Words by x\n4.Exit");
-                var choice = Console.ReadLine();
+                InputMenuChoiche(Console.ReadLine(), out string errorMsg, out int choice);
                 switch (choice)
                 {
-                    case "1":
+                    case 1:
                         pl.Search();
                         break;
-                    case "2":
+                    case 2:
                         pl.PrintResults();
                         break;
-                    case "3":
-                        PrintWords();
+                    case 3:
+                        PrintWordsMenu();
                         break;
-                    case "4":
+                    case 4:
                         Environment.Exit(0);
                         break;
                     default:
+                        Console.WriteLine(errorMsg);
                         break;
                 }
             }
         }
 
-        private void PrintWords()
+        private void PrintWordsMenu()
         {
             Console.WriteLine("Print words from: \n1.TextOne\n2.TextTwo\n3.TextThree");
-            var choice = int.Parse(Console.ReadLine());
-            Console.Write("How many words to print: ");
-            var number = int.Parse(Console.ReadLine());
-            switch (choice)
+            if (InputMenuChoiche(Console.ReadLine(), out string errorMsg, out int choice))
             {
-                case 1:
-                    pl.PrintFromList(ListOne, number);
-                    break;
-                case 2:
-                    pl.PrintFromList(ListTwo, number);
-                    break;
-                case 3:
-                    pl.PrintFromList(ListThree, number);
-                    break;
-                default:
-                    break;
+                Console.Write("How many words to print: ");
+                if(InputMenuChoiche(Console.ReadLine(), out  errorMsg, out int number)){
+                    switch (choice)
+                    {
+                        case 1:
+                            pl.PrintFromList(ListOne, number);
+                            break;
+                        case 2:
+                            pl.PrintFromList(ListTwo, number);
+                            break;
+                        case 3:
+                            pl.PrintFromList(ListThree, number);
+                            break;
+                        default:
+                            Console.WriteLine(errorMsg);
+                            break;
+                    }
+                }
             }
+            Console.WriteLine(errorMsg);
         }
     }
 }
