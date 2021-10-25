@@ -25,7 +25,7 @@ namespace WordSearch.Utitlitys
                 List<string> list = File.ReadAllText(filepath)                   
                     .Split(separators, StringSplitOptions.RemoveEmptyEntries)
                     .ToList();
-
+                Console.WriteLine($"{filepath} was succesfully converted to a list");
                 return list;
             }
             catch (Exception e)

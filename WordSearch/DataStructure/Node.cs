@@ -9,8 +9,8 @@ namespace WordSearch.DataStructure
     public class Node
     {
         private string _word;
-
         private Tuple<string, int>[] _results;
+       
         private Node Left { get; set; }
         private Node Right { get; set; }
 
@@ -22,7 +22,7 @@ namespace WordSearch.DataStructure
 
         public void Insert(string word, Tuple<string, int>[] result)
         {
-            if (word[0] <= this._word[0])
+            if (word[0] <= 'n')
             {
                 if (Left == null)
                 {
