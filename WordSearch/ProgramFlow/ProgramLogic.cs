@@ -62,12 +62,12 @@ namespace WordSearch
                 };
 
                 var sorted = results.OrderByDescending(c => c.Item2).ToArray();
-                Console.WriteLine(searchWord);
+                res.Insert(searchWord, sorted);
+                Console.WriteLine("You Searched for: " + searchWord+ "\n");
                 foreach (var (item1, item2) in sorted)
                 {
                     Console.WriteLine($"{item1} contained {item2} times");
                 }
-                res.Insert(searchWord, sorted);
                 Console.ReadKey();
                 Console.Clear();
             }

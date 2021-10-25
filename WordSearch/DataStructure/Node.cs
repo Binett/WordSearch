@@ -10,7 +10,7 @@ namespace WordSearch.DataStructure
     {
         private string _word;
         private Tuple<string, int>[] _results;
-       
+
         private Node Left { get; set; }
         private Node Right { get; set; }
 
@@ -21,27 +21,46 @@ namespace WordSearch.DataStructure
         }
 
         public void Insert(string word, Tuple<string, int>[] result)
-        {
-            if (word[0] <= 'n')
+        {         
+
+            if (word[0] <= _word[0])
             {
+
                 if (Left == null)
                 {
+
                     Left = new Node(word, result);
                 }
                 else
                 {
-                    Left.Insert(word, result);
+                    if (Left._word == word)
+                    {
+                        Console.WriteLine("Already added, but heres the result: ");
+                    }
+                    else
+                    {
+                        Left.Insert(word, result);
+                    }
                 }
             }
             else
             {
+
                 if (Right == null)
                 {
                     Right = new Node(word, result);
                 }
                 else
                 {
-                    Right.Insert(word, result);
+                    if (word == Right._word)
+                    {
+                        Console.WriteLine("Already added, but heres the result:");
+                        return;
+                    }
+                    else
+                    {
+                        Right.Insert(word, result);
+                    }
                 }
             }
         }
