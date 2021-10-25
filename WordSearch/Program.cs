@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using WordSearch.DataStructure;
+﻿using WordSearch.ProgramFlow;
 using WordSearch.Utitlitys;
 
 namespace WordSearch
@@ -11,9 +8,8 @@ namespace WordSearch
         static void Main(string[] args)
         {
             Seeder.Seed();
-            ProgramLogic pl = new();
-            pl.Run();
-            
+            Menues menu = new();
+            menu.Run();
         }
     }
 }
