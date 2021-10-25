@@ -32,6 +32,7 @@ namespace WordSearch.ProgramFlow
                         break;
                     default:
                         Console.WriteLine(errorMsg);
+                        Console.ReadLine();
                         break;
                 }
             }
