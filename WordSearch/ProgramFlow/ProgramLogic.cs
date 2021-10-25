@@ -10,12 +10,12 @@ namespace WordSearch
     public class ProgramLogic
     {
         readonly Result res = new();
-        
+
         internal void PrintResults()
         {
             res.PrintTree();
         }
-       
+
 
         internal void PrintFromList(List<string> list, int input)
         {
@@ -27,8 +27,11 @@ namespace WordSearch
                     Console.WriteLine(list[i]);
                 }
             }
-            Console.WriteLine(string.Join("\n", list));
-            Console.WriteLine($"The list dosent contain {input} words, so i gave you the entire list.");
+            else
+            {
+                Console.WriteLine(string.Join("\n", list));
+                Console.WriteLine($"The list dosent contain {input} words, so i gave you the entire list.");
+            }
         }
 
         internal void Search()
@@ -59,7 +62,12 @@ namespace WordSearch
                 };
 
                 var sorted = results.OrderByDescending(c => c.Item2).ToArray();
-                res.Insert(searchWord, sorted); 
+                Console.WriteLine(searchWord);
+                foreach (var item in sorted)
+                {
+                    Console.WriteLine($"{item.Item1} contained {item.Item2} times");
+                }
+                res.Insert(searchWord, sorted);
                 Console.ReadKey();
                 Console.Clear();
             }
