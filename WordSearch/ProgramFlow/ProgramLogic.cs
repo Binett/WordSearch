@@ -63,9 +63,9 @@ namespace WordSearch
 
                 var sorted = results.OrderByDescending(c => c.Item2).ToArray();
                 Console.WriteLine(searchWord);
-                foreach (var item in sorted)
+                foreach (var (item1, item2) in sorted)
                 {
-                    Console.WriteLine($"{item.Item1} contained {item.Item2} times");
+                    Console.WriteLine($"{item1} contained {item2} times");
                 }
                 res.Insert(searchWord, sorted);
                 Console.ReadKey();
