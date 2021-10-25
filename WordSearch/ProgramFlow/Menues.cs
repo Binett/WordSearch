@@ -13,7 +13,7 @@ namespace WordSearch.ProgramFlow
             while (true)
             {
                 Console.WriteLine("1.search\n2.Print results\n3. Print Words by x\n4.Exit");
-                InputMenuChoiche(Console.ReadLine(), out string errorMsg, out int choice);
+                InputMenuChoiche(Console.ReadLine(), out var errorMsg, out var choice);
                 switch (choice)
                 {
                     case 1:
@@ -38,10 +38,10 @@ namespace WordSearch.ProgramFlow
         private void PrintWordsMenu()
         {
             Console.WriteLine("Print words from: \n1.TextOne\n2.TextTwo\n3.TextThree");
-            if (InputMenuChoiche(Console.ReadLine(), out string errorMsg, out int choice))
+            if (InputMenuChoiche(Console.ReadLine(), out var errorMsg, out var choice))
             {
                 Console.Write("How many words to print: ");
-                if(InputMenuChoiche(Console.ReadLine(), out  errorMsg, out int number)){
+                if(InputMenuChoiche(Console.ReadLine(), out  errorMsg, out var number)){
                     switch (choice)
                     {
                         case 1:

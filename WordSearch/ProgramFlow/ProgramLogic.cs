@@ -11,7 +11,6 @@ namespace WordSearch
     {
         readonly Result res = new();
         
-        
         internal void PrintResults()
         {
             res.PrintTree();
@@ -28,8 +27,8 @@ namespace WordSearch
                     Console.WriteLine(list[i]);
                 }
             }
-            Console.WriteLine($"The list dosent contain {input} words, so i will give you the entire list.");
             Console.WriteLine(string.Join("\n", list));
+            Console.WriteLine($"The list dosent contain {input} words, so i gave you the entire list.");
         }
 
         internal void Search()
@@ -38,7 +37,7 @@ namespace WordSearch
             {
                 Console.Write("[e] to go back\nEnter a word: ");
                 var searchWord = Console.ReadLine();
-                if (!WordSearchInputHelper(searchWord, out string errorMsg))
+                if (!WordSearchInputHelper(searchWord, out var errorMsg))
                 {
                     Console.WriteLine(errorMsg);
                     break;
@@ -54,9 +53,9 @@ namespace WordSearch
 
                 Tuple<string, int>[] results =
                 {
-                new Tuple<string, int>("ListOne: ", num1),
-                new Tuple<string, int>("ListTwo: ", num2),
-                new Tuple<string, int>("ListThree: ", num3),
+                new("ListOne: ", num1),
+                new("ListTwo: ", num2),
+                new("ListThree: ", num3),
                 };
 
                 var sorted = results.OrderByDescending(c => c.Item2).ToArray();
@@ -69,17 +68,14 @@ namespace WordSearch
 
         internal int HowManyWords(List<string> textList, string searchWord)
         {
-            if (textList.Contains(searchWord))
+            if (!textList.Contains(searchWord)) return 0;
+            var count = 0;
+            for (int i = textList.Count - 1; i >= 0; i--)
             {
-                var count = 0;
-                for (int i = 0; i < textList.Count; i++)
-                {
-                    if (textList[i] == searchWord)
-                        count++;
-                }
-                return count;
+                if (textList[i] == searchWord)
+                    count++;
             }
-            return 0;
+            return count;
         }
     }
 }
