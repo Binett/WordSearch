@@ -8,24 +8,25 @@ namespace WordSearch.DataStructure
 {
     public class Node
     {
-        private readonly Result _result;
+        private string _word;
+
+        private Tuple<string, int>[] _results;
         private Node Left { get; set; }
         private Node Right { get; set; }
 
-        public Node(Result result)
+        public Node(string word, Tuple<string, int>[] results)
         {
-
-            _result = result;
+            _word = word;
+            _results = results;
         }
 
-        public void Insert(string word, string result)
+        public void Insert(string word, Tuple<string, int>[] result)
         {
-            //int compare = word.CompareTo(_result.Word);
-            if (word[0] <= this._result.Word[0])
+            if (word[0] <= this._word[0])
             {
                 if (Left == null)
                 {
-                    Left = new Node(new Result(word, result));
+                    Left = new Node(word, result);
                 }
                 else
                 {
@@ -36,7 +37,7 @@ namespace WordSearch.DataStructure
             {
                 if (Right == null)
                 {
-                    Right = new Node(new Result(word, result));
+                    Right = new Node(word, result);
                 }
                 else
                 {
@@ -45,50 +46,26 @@ namespace WordSearch.DataStructure
             }
         }
 
+       
 
         public void PrintNodes()
         {
-            Console.WriteLine($"{_result.Word} \n {_result.Results}");
+            Console.WriteLine($"{_word}");
+            foreach (var result in _results)
+            {
+                Console.WriteLine($"Name: {result.Item1} count: {result.Item2}");
+            }
 
             if (Left != null)
             {
+                Console.WriteLine("Left Node: \n");
                 Left.PrintNodes();
             }
             if (Right != null)
             {
+                Console.WriteLine("Right Node: \n");
                 Right.PrintNodes();
             }
         }
-
-
-        //public Node(Result result)
-        //{
-        //    _result = result;
-        //}
-
-        //public Node GetLeftNode()
-        //{
-        //    return _leftNode;
-        //}
-        //public Node GetRightNode()
-        //{
-        //    return _rightNode;
-        //}
-
-        //public Node SetLeftNode(Node newNode)
-        //{
-        //    return _leftNode = newNode;
-        //}
-
-        //public Node SetRightNode(Node newNode)
-        //{
-        //    return _rightNode = newNode;
-        //}
-
-        //public override string ToString()
-        //{
-
-        //}
-
     }
 }

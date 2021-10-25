@@ -21,7 +21,7 @@ namespace WordSearch.Utitlitys
         {
             try
             {
-                string[] separators = { "\r\n", "", " " };
+                string[] separators = { "\r\n", "", " "};
                 List<string> list = File.ReadAllText(filepath)                   
                     .Split(separators, StringSplitOptions.RemoveEmptyEntries)
                     .ToList();

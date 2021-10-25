@@ -8,20 +8,9 @@ namespace WordSearch.DataStructure
 {
     public class Result
     {
-        private Node root;
+        private Node root;       
 
-        public string Word { get; set; }
-        public string Results { get; set; }
-
-      
-        public Result(string word, string results)
-        {
-            Word = word;
-            Results = results;
-            //root = new Node(word, results);
-        }
-
-        public void Insert(string searchword, string result)
+        public void Insert(string searchword, Tuple<string, int>[] result)
         {
             if (root != null)
             {
@@ -29,10 +18,10 @@ namespace WordSearch.DataStructure
             }
             else
             {
-                root = new Node(new Result(searchword, result));
+                root = new Node(searchword, result);
             }
         }
-
+     
         public void PrintTree()
         {
             if (root != null)

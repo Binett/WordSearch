@@ -12,7 +12,7 @@ namespace WordSearch.Utitlitys
         private static List<string> listTwo;
         private static List<string> listThree;
 
-        internal static List<string> ListOne { get =>listOne; }
+        internal static List<string> ListOne { get => listOne;  }
         internal static List<string> ListTwo { get => listTwo; }
         internal static List<string> ListThree { get => listThree; }
 
