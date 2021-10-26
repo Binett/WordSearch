@@ -72,6 +72,7 @@ namespace WordSearch.DataStructure
             {
                 Console.WriteLine($"Name: {result.Item1} count: {result.Item2}");
             }
+            Console.WriteLine();
 
             if (Left != null)
             {
