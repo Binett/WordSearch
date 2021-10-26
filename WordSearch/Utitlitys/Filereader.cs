@@ -31,7 +31,7 @@ namespace WordSearch.Utitlitys
             catch (Exception e) // kastar exception om det inte lyckas
             {
                 Console.WriteLine("Kunde inte läsa in textfilen: " + e.Message); // Skickar meddelande till konsolen 
-                return new List<string> { }; // returnerar en tom lista 
+                return new List<string>(); // returnerar en tom lista för att undvika krasch
             }
         }
     }

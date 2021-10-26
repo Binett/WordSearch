@@ -64,7 +64,7 @@ namespace WordSearch.DataStructure
 
         public void PrintNodes()
         {
-            Console.WriteLine($"Search word: {_word}");
+            Console.WriteLine($"Searched word {_word}");
             var sb = new StringBuilder();
             foreach (var (item1, item2) in _results)
             {

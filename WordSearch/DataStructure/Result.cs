@@ -24,6 +24,10 @@ namespace WordSearch.DataStructure
             {
                 root.PrintNodes();
             }
+            else
+            {
+                Console.WriteLine("The tree hasent been planted yet, search for some words first :)");
+            }
         }
     }
 }
