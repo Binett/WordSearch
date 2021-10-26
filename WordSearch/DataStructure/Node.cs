@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace WordSearch.DataStructure
 {
@@ -67,11 +64,13 @@ namespace WordSearch.DataStructure
 
         public void PrintNodes()
         {
-            Console.WriteLine($"{_word}");
-            foreach (var result in _results)
+            Console.WriteLine($"Search word: {_word}");
+            var sb = new StringBuilder();
+            foreach (var (item1, item2) in _results)
             {
-                Console.WriteLine($"Name: {result.Item1} count: {result.Item2}");
+                sb.Append($"\tText: {item1}  Count: {item2} times\n");
             }
+            Console.WriteLine(sb.ToString());
             Console.WriteLine();
 
             if (Left != null)

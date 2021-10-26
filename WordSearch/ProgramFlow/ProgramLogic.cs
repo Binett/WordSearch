@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using WordSearch.DataStructure;
 using static WordSearch.Utitlitys.InputHelper;
 using static WordSearch.Utitlitys.Seeder;
@@ -43,7 +44,7 @@ namespace WordSearch
         {
             Console.Clear();
             res.PrintTree();
-            Console.ReadLine();
+            EnterToContinue();
         }
 
         internal void Search()
@@ -52,20 +53,32 @@ namespace WordSearch
             {
                 Console.Clear();
                 Console.Write("[e] to go back\nEnter a word: ");
-                var searchWord = Console.ReadLine();
-                if (!WordSearchInputHelper(searchWord, out var errorMsg))
+                var input = Console.ReadLine();
+                if (!WordSearchInputHelper(input, out var errorMsg, out string searchWord))
                 {
                     Console.WriteLine(errorMsg);
-                    break;
-                }
-                else if (searchWord == "e")
-                {
+                    EnterToContinue();
                     break;
                 }
                 res.Insert(searchWord, OrderedResults(searchWord));
                 PrintResult(searchWord, OrderedResults(searchWord));
-                Console.ReadLine();
+                if (AskSearchAgain())
+                {
+                    Search();
+                }
+                break;
             }
+        }
+
+        private bool AskSearchAgain()
+        {
+            Console.WriteLine("[Y/y] to search again\n[any key to go back to main menu]");
+            var choice = Console.ReadKey().KeyChar;
+            if (char.ToLower(choice) == 'y')
+            {
+                return true;
+            }
+            return false;
         }
 
         private Tuple<string, int>[] OrderedResults(string searchWord)
@@ -75,11 +88,15 @@ namespace WordSearch
 
         private void PrintResult(string searchWord, Tuple<string, int>[] results)
         {
-            Console.WriteLine("\nYou Searched for: " + searchWord + "\n");
+            //stringBuilder 0.002148 ms
+            //cw i foreachen 0.004728 ms
+            Console.WriteLine("\nYou Searched for: " + searchWord + "\n");          
+            var sb = new StringBuilder();
             foreach (var (item1, item2) in results)
-            {
-                Console.WriteLine($"{item1} contained {searchWord} {item2} times");
+            {                
+                sb.Append($"Text: {item1}  Count: {item2} times\n");               
             }
+            Console.WriteLine(sb.ToString());         
         }
 
         private Tuple<string, int>[] Results(string searchWord)

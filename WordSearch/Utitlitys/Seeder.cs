@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using static WordSearch.Utitlitys.InputHelper;
 
 namespace WordSearch.Utitlitys
 {
@@ -23,8 +24,7 @@ namespace WordSearch.Utitlitys
             listTwo = Filereader.TextToList(filepathTwo);
             listThree = Filereader.TextToList(filepathThree);
 
-            Console.Write("\nPress Enter to continue");
-            Console.ReadLine();
+            EnterToContinue();
         }
     }
 }
