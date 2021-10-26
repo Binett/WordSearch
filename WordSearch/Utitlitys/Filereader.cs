@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace WordSearch.Utitlitys
 {
@@ -18,18 +19,20 @@ namespace WordSearch.Utitlitys
         {
             try
             {
-                string[] separators = { "\r\n", "", " "};
-                List<string> list = File.ReadAllText(filepath)                   
-                    .Split(separators, StringSplitOptions.RemoveEmptyEntries)
-                    .ToList();
-                Console.WriteLine($"{filepath} was succesfully converted to a list");
+                string[] separators = { "\r\n", "", " " }; // Array där vi bestämmer vart orden skall splittas
+                List<string> list = File.ReadAllText(filepath)
+                    .Split(separators, StringSplitOptions.RemoveEmptyEntries) // Separerar orden och tar bort de index där strängen är tom
+                    .Select(str => Regex.Replace(str, "[^a-zA-Z0-9_]+", "", RegexOptions.Compiled)) 
+                    .ToList(); // Konverterar till lista eftsom vi vill returnera en lista som vi har valt att jobba med i första hand.
+
+                Console.WriteLine($"{filepath} was succesfully converted to a list"); //Om det lyckas skriver vi ut det till konsolen
                 return list;
             }
-            catch (Exception e)
+            catch (Exception e) // kastar exception om det inte lyckas
             {
-                Console.WriteLine("Kunde inte läsa in textfilen: " + e.Message);
+                Console.WriteLine("Kunde inte läsa in textfilen: " + e.Message); // Skickar meddelande till konsolen 
+                return new List<string> { }; // returnerar en tom lista 
             }
-            return new List<string> { };
         }
     }
 }
