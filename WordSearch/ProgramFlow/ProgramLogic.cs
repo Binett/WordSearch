@@ -12,10 +12,18 @@ namespace WordSearch
     {
         private readonly Result res = new();
 
+        /// <summary>
+        /// Tar in en lista och ett sökord. Räknar hur många gånger sökordet finns i listan.
+        /// </summary>
+        /// <param name="textList">Lista med ord</param>
+        /// <param name="searchWord">Ordet som jämförs mot listan</param>
+        /// <returns>Retunerar 0 om listan inte inehåller sökordet. Retunerar antalet om ordet finns</returns>
         internal int HowManyWords(List<string> textList, string searchWord)
         {
-            if (!textList.Contains(searchWord)) return 0;
+            if (!textList.Contains(searchWord)) return 0; // Om listan inte innehåller sökord, retunera 0.
             var count = 0;
+
+            // Ordovärde: O(n)
             for (int i = textList.Count - 1; i >= 0; i--)
             {
                 if (textList[i] == searchWord)
@@ -24,10 +32,16 @@ namespace WordSearch
             return count;
         }
 
+        /// <summary>
+        /// Skriver ut x antal från listan beroende på input. Om input är högre än listans längd skrivs hela listan ut.
+        /// </summary>
+        /// <param name="list">Lista</param>
+        /// <param name="input">Antal ord som ska skrivas ut</param>
         internal void PrintFromList(List<string> list, int input)
         {
             if (input <= list.Count)
             {
+                // Ordovärde: O(n)
                 for (int i = 0; i < input; i++)
                 {
                     Console.WriteLine(list[i]);
@@ -40,6 +54,9 @@ namespace WordSearch
             }
         }
 
+        /// <summary>
+        /// Skriver ut resultatet från trädet.
+        /// </summary>
         internal void PrintResults()
         {
             Console.Clear();
@@ -47,6 +64,10 @@ namespace WordSearch
             EnterToContinue();
         }
 
+        /// <summary>
+        /// Tar input från användare efter ett sökord, jämför sedan med de tre texterna hur många gånger ordet förekommer.
+        /// Rangordnar dessa och skickar in det till datastrukturen. Skriver även ut resultatet till konsolen.
+        /// </summary>
         internal void Search()
         {
             while (true)
@@ -70,6 +91,10 @@ namespace WordSearch
             }
         }
 
+        /// <summary>
+        /// Hjälpmetod till search metod som ger användare nmöjlighet att söka på ett till ord.
+        /// </summary>
+        /// <returns>Retunerar sant om användaren skriver in Y/y. Retunerar falskt om något annat skrivs in</returns>
         private bool AskSearchAgain()
         {
             Console.WriteLine("[Y/y] to search again\n[any key to go back to main menu]");
@@ -81,13 +106,24 @@ namespace WordSearch
             return false;
         }
 
+        /// <summary>
+        /// Rangordnar resultaten för att kunna avgöra vilken listan som inheåller flest sökträffar.
+        /// </summary>
+        /// <param name="searchWord">De sökta ordet</param>
+        /// <returns>Retunerar sorterad tupel</returns>
         private Tuple<string, int>[] OrderedResults(string searchWord)
         {
             return Results(searchWord).OrderByDescending(c => c.Item2).ToArray();
         }
 
+        /// <summary>
+        /// Bygger upp en sträng av resultaten och skriver ut den.
+        /// </summary>
+        /// <param name="searchWord">Det sökta ordet</param>
+        /// <param name="results">En tupel av resultaten</param>
         private void PrintResult(string searchWord, Tuple<string, int>[] results)
         {
+            // Stringbuilder är snabbare i detta läge.
             //stringBuilder 0.002148 ms
             //cw i foreachen 0.004728 ms
             Console.WriteLine("\nYou Searched for: " + searchWord + "\n");          
@@ -99,6 +135,11 @@ namespace WordSearch
             Console.WriteLine(sb.ToString());         
         }
 
+        /// <summary>
+        /// Sammlar ihop resultatet och lägger det i en liten låda(tupel).
+        /// </summary>
+        /// <param name="searchWord">Det sökta ordet</param>
+        /// <returns>Retunerar tupeln med det sparade resultatet</returns>
         private Tuple<string, int>[] Results(string searchWord)
         {
             var wordCountListOne = HowManyWords(ListOne, searchWord);

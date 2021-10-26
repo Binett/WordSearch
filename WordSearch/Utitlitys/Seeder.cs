@@ -14,6 +14,9 @@ namespace WordSearch.Utitlitys
         internal static List<string> ListTwo { get => listTwo; }
         internal static List<string> ListThree { get => listThree; }
 
+        /// <summary>
+        /// Läser in txt filerna med hjälp av den angivna filvägen, separerar orden och spar varje texts ord i en separat lista.
+        /// </summary>
         public static void Seed()
         {
             const string filepathOne = "Data\\TextOne.txt";
