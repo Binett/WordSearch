@@ -70,7 +70,7 @@ namespace WordSearch.DataStructure
             Console.WriteLine($"{_word}");
             foreach (var result in _results)
             {
-                Console.WriteLine($"Name: {result.Item1} count: {result.Item2}");
+                Console.WriteLine($"Name: {result.Item1} count: {result.Item2}\n");
             }
 
             if (Left != null)
