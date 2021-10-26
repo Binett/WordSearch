@@ -7,8 +7,11 @@ namespace WordSearch
     {
         static void Main(string[] args)
         {
+            // Seedar Textfilerna
             Seeder.Seed();
+            // Instansierar meny klassen 
             Menus menu = new();
+            // Anropar Run
             menu.Run();
         }
     }
