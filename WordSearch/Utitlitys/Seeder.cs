@@ -6,10 +6,12 @@ namespace WordSearch.Utitlitys
 {
     public static class Seeder
     {
+        // Fält för listorna
         private static List<string> listOne;
         private static List<string> listTwo;
         private static List<string> listThree;
 
+        // Static getters för varje lista då vi vill använda dem globalt
         internal static List<string> ListOne { get => listOne;  }
         internal static List<string> ListTwo { get => listTwo; }
         internal static List<string> ListThree { get => listThree; }
