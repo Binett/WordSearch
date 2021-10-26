@@ -25,6 +25,9 @@ namespace WordSearch.Utitlitys
             listOne = Filereader.TextToList(filepathOne);
             listTwo = Filereader.TextToList(filepathTwo);
             listThree = Filereader.TextToList(filepathThree);
+
+            Console.Write("\nPress Enter to continue");
+            Console.ReadLine();
         }
     }
 }
