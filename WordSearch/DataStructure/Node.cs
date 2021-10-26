@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text;
 
 namespace WordSearch.DataStructure
@@ -20,32 +21,31 @@ namespace WordSearch.DataStructure
         public void Insert(string word, Tuple<string, int>[] result)
         {         
 
-            if (word[0] <= _word[0])
+            if (word[0] <= this._word[0])
             {
 
-                if (Left == null)
+                if (this.Left == null)
                 {
-
-                    Left = new Node(word, result);
+                    this.Left = new Node(word, result);
                 }
                 else
                 {
-                    if (Left._word == word)
+                    if (this.Left._word == word)
                     {
                         Console.WriteLine("Already added, but heres the result: ");
                     }
                     else
                     {
-                        Left.Insert(word, result);
+                        this.Left.Insert(word, result);
                     }
                 }
             }
             else
             {
 
-                if (Right == null)
+                if (this.Right == null)
                 {
-                    Right = new Node(word, result);
+                    this.Right = new Node(word, result);
                 }
                 else
                 {
@@ -56,11 +56,13 @@ namespace WordSearch.DataStructure
                     }
                     else
                     {
-                        Right.Insert(word, result);
+                        this.Right.Insert(word, result);
                     }
                 }
             }
         }
+
+    
 
         public void PrintNodes()
         {
@@ -75,10 +77,12 @@ namespace WordSearch.DataStructure
 
             if (Left != null)
             {
+                Console.WriteLine("Left Node");
                 Left.PrintNodes();
             }
             if (Right != null)
             {
+                Console.WriteLine("Right Node");
                 Right.PrintNodes();
             }
         }

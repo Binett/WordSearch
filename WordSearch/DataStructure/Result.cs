@@ -4,7 +4,7 @@ namespace WordSearch.DataStructure
 {
     public class Result
     {
-        private Node root;       
+        private Node root;     
 
         public void Insert(string searchword, Tuple<string, int>[] result)
         {
@@ -28,6 +28,6 @@ namespace WordSearch.DataStructure
             {
                 Console.WriteLine("The tree hasent been planted yet, search for some words first :)");
             }
-        }
+        }  
     }
 }

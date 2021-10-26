@@ -22,9 +22,13 @@ namespace WordSearch.Utitlitys
                 string[] separators = { "\r\n", "", " " }; // Array där vi bestämmer vart orden skall splittas
                 List<string> list = File.ReadAllText(filepath)
                     .Split(separators, StringSplitOptions.RemoveEmptyEntries) // Separerar orden och tar bort de index där strängen är tom
-                    .Select(str => Regex.Replace(str, "[^a-zA-Z0-9_]+", "", RegexOptions.Compiled)) 
+                    .Select(str => Regex.Replace(str, "[^a-zA-Z_]+", "", RegexOptions.Compiled)) // Vi tar bort allt som int är bokstäver 
                     .ToList(); // Konverterar till lista eftsom vi vill returnera en lista som vi har valt att jobba med i första hand.
-
+                // O(log n) tillhör sort
+                // vi väljer att sortera listan redan här eftersom det inte är krav att skriva ut hela listan som orginaldokumentet.
+                list.Sort(); // Vi skrev först en egen quicksort men kastade den då den presterade sämre än APIet
+                //List<T>.Sort uses a quicksort algorithm, which is O(log n) space. https://en.wikipedia.org/wiki/Quicksort#Space_complexity
+              
                 Console.WriteLine($"{filepath} was succesfully converted to a list"); //Om det lyckas skriver vi ut det till konsolen
                 return list;
             }
@@ -36,3 +40,4 @@ namespace WordSearch.Utitlitys
         }
     }
 }
+
