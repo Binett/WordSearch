@@ -8,6 +8,9 @@ namespace WordSearch.ProgramFlow
     {
         private readonly ProgramLogic pl = new();
 
+        /// <summary>
+        /// Metod med huvudmeny som används i Program filen för att starta igång flödet.
+        /// </summary>
         public void Run()
         {
             while (true)
@@ -38,6 +41,9 @@ namespace WordSearch.ProgramFlow
             }
         }
 
+        /// <summary>
+        /// Menu som används för att välja vilken lista som orden ska skrivas ut ifrån.
+        /// </summary>
         private void PrintWordsMenu()
         {
             Console.Clear();
