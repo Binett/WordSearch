@@ -8,7 +8,7 @@ namespace WordSearch
         static void Main(string[] args)
         {
             Seeder.Seed();
-            Menues menu = new();
+            Menus menu = new();
             menu.Run();
         }
     }

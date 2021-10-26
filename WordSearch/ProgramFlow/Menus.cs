@@ -4,7 +4,7 @@ using static WordSearch.Utitlitys.InputHelper;
 
 namespace WordSearch.ProgramFlow
 {
-    public class Menues
+    public class Menus
     {
         private readonly ProgramLogic pl = new();
 
