@@ -10,7 +10,10 @@ namespace WordSearch
 {
     public class ProgramLogic
     {
-        private readonly Result res = new();
+        /// <summary>
+        /// Instansierar Tree klassen.
+        /// </summary>
+        private readonly Tree tree = new();
 
         /// <summary>
         /// Tar in en lista och ett sökord. Räknar hur många gånger sökordet finns i listan.
@@ -60,7 +63,7 @@ namespace WordSearch
         internal void PrintResults()
         {
             Console.Clear();
-            res.PrintTree();
+            tree.PrintTree();
             EnterToContinue();
         }
 
@@ -81,7 +84,7 @@ namespace WordSearch
                     EnterToContinue();
                     break;
                 }
-                res.Insert(searchWord, OrderedResults(searchWord));
+                tree.Insert(searchWord, OrderedResults(searchWord));
                 PrintResult(searchWord, OrderedResults(searchWord));
                 if (AskSearchAgain())
                 {

@@ -6,6 +6,9 @@ namespace WordSearch.ProgramFlow
 {
     public class Menus
     {
+        /// <summary>
+        /// Instansierar ProgramLogic klassen.
+        /// </summary>
         private readonly ProgramLogic pl = new();
 
         /// <summary>

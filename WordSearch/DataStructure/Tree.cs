@@ -2,7 +2,7 @@
 
 namespace WordSearch.DataStructure
 {
-    public class Result
+    public class Tree
     {
         private Node root;     
 
