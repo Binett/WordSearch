@@ -76,7 +76,7 @@ namespace WordSearch
             while (true)
             {
                 Console.Clear();
-                Console.Write("[e] to go back\nEnter a word: ");
+                Console.Write("Searh for a word, your result will be added to the datastructure\n\nEnter a word: ");
                 var input = Console.ReadLine();
                 if (!WordSearchInputHelper(input, out var errorMsg, out string searchWord))
                 {

@@ -6,18 +6,38 @@ namespace WordSearch.DataStructure
 {
     public class Node
     {
+        // Fält för word, som är nodens värde
         private string _word;
+        // En tuple med resultat som vi får baserat på sökord
         private Tuple<string, int>[] _results;
 
+        // Getters och setters för Noderna
         private Node Left { get; set; }
         private Node Right { get; set; }
 
+        //Konstruktor för node klassen
         public Node(string word, Tuple<string, int>[] results)
         {
             _word = word;
             _results = results;
         }
 
+
+        /// <summary>
+        /// Tar in en sträng med ett värde som vi vill tilldela noden,
+        /// Här har vi använt oss av en rekursiv metod som kommer gå igenom noderna och
+        /// jämföra värdet på noderna tills vi hamnar på en tom nod och där, utgår från root noden. 
+        /// skapar vi upp en ny nod med där strängens värde blir "key" och den skall hålla 
+        /// tuplen med sökresultat i sig. 
+        /// 
+        /// Valde rekursivt för att bryta ned sökning till mindre och mindre delar för varje itteration.
+        /// 
+        /// Tidskomplexitet: O(1) + O(1) + O(1) + O(log n)
+        /// 
+        /// Asymptotisk analys: O(log n)
+        /// </summary>
+        /// <param name="word">Värde på noden</param>
+        /// <param name="result">Sökresultat</param>
         public void Insert(string word, Tuple<string, int>[] result)
         {         
 
@@ -61,8 +81,9 @@ namespace WordSearch.DataStructure
             }
         }
 
-    
-
+        /// <summary>
+        /// rekursiv metod för att printa ut trädet med sökresultatet
+        /// </summary>
         public void PrintNodes()
         {
             Console.WriteLine($"Searched word {_word}");
