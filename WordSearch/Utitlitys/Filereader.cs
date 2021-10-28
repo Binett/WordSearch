@@ -9,12 +9,10 @@ namespace WordSearch.Utitlitys
     public static class Filereader
     {
         /// <summary>
-        /// Recieves a filepath. Reads the text and split the words with an array with separators.
-        /// Creates a list containing the words.
+        /// Tar in sökväg till filen, konverterar till lista //läs kommentarerna nedan.     
         /// </summary>
-        /// <param name="filepath">File folder path</param>
-        /// <returns>if list exist return a list with the words from the text document, 
-        /// if filepath dosent exist return an empty list</returns>
+        /// <param name="filepath">Sökväg till filen</param>
+        /// <returns>En lista med ord från textens innehåll</returns>
         public static List<string> TextToList(string filepath)
         {
             try
@@ -22,7 +20,9 @@ namespace WordSearch.Utitlitys
                 string[] separators = { "\r\n", "", " " }; // Array där vi bestämmer vart orden skall splittas
                 List<string> list = File.ReadAllText(filepath)
                     .Split(separators, StringSplitOptions.RemoveEmptyEntries) // Separerar orden och tar bort de index där strängen är tom
-                    .Select(str => Regex.Replace(str, "[^a-zA-Z_]+", "", RegexOptions.Compiled)) // Vi tar bort allt som int är bokstäver 
+                    .Select(str => Regex.Replace(str, "[^a-zA-Z_]+", "", RegexOptions.Compiled)) // Vi tar bort allt som inte är bokstäver
+                                                                                                 // å,ä ö tar vi också bort eftersom vi
+                                                                                                 // jobbar med texter på engelska 
                     .ToList(); // Konverterar till lista eftsom vi vill returnera en lista som vi har valt att jobba med i första hand.
                 // O(log n) tillhör sort
                 // vi väljer att sortera listan redan här eftersom det inte är krav att skriva ut hela listan som orginaldokumentet.
