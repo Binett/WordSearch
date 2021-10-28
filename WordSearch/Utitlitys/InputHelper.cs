@@ -13,7 +13,7 @@ namespace WordSearch.Utitlitys
         /// <param name="word">Input från användare</param>
         /// <param name="errorMsg">Felmeddelande</param>
         /// <param name="searchWord">Trimmad sträng</param>
-        /// <returns></returns>
+        /// <returns>False om inputen är tomt, annars true</returns>
         public static bool WordSearchInputHelper(string word, out string errorMsg, out string searchWord)
         {
             errorMsg = "";
@@ -62,7 +62,7 @@ namespace WordSearch.Utitlitys
         /// Ville testa lite stringBuilder istället ett API
         /// </summary>
         /// <param name="input"></param>
-        /// <returns></returns>
+        /// <returns>Stringbuilder av det trimmade ordet</returns>
         private static string TrimWord(string input)
         {
             //ordovärde: O(n)
