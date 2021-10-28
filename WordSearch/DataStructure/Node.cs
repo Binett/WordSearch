@@ -21,9 +21,8 @@ namespace WordSearch.DataStructure
         public void Insert(string word, Tuple<string, int>[] result)
         {         
 
-            if (word[0] <= this._word[0])
+            if (string.Compare(word, this._word, StringComparison.InvariantCulture) < 0)
             {
-
                 if (this.Left == null)
                 {
                     this.Left = new Node(word, result);
