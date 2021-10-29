@@ -67,7 +67,7 @@ namespace WordSearch.ProgramFlow
                 Console.WriteLine("Print words from: \n1. TextOne\n2. TextTwo\n3. TextThree");
                 if (InputMenuChoiche(Console.ReadLine(), out var errorMsg, out var choice))
                 {
-                    if (choice <= 0 || choice > 3)
+                    if (choice is <= 0 or > 3)
                     {
                         Console.WriteLine("Enter a valid menu choice");
                     }
@@ -89,18 +89,13 @@ namespace WordSearch.ProgramFlow
                                 case 3:
                                     pl.PrintFromList(ListThree, number);
                                     break;
-
-                                default:
-                                    Console.WriteLine(errorMsg);
-                                    break;
                             }
+
                             EnterToContinue();
                             break;
                         }
-                        else
-                        {
-                            Console.WriteLine(errorMsg);
-                        }
+
+                        Console.WriteLine(errorMsg);
                     }
                 }
                 else
