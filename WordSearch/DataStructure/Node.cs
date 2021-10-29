@@ -39,7 +39,12 @@ namespace WordSearch.DataStructure
         /// <param name="word">Värde på noden</param>
         /// <param name="result">Sökresultat</param>
         public void Insert(string word, Tuple<string, int>[] result)
-        {         
+        {
+            if (word == this._word)
+            {
+                Console.WriteLine("Already added to to the datastructure, but heres your result: ");
+                return;
+            }
 
             if (string.Compare(word, this._word, StringComparison.InvariantCulture) < 0)
             {
@@ -49,14 +54,7 @@ namespace WordSearch.DataStructure
                 }
                 else
                 {
-                    if (this.Left._word == word)
-                    {
-                        Console.WriteLine("Already added, but heres the result: ");
-                    }
-                    else
-                    {
-                        this.Left.Insert(word, result);
-                    }
+                    this.Left.Insert(word, result);
                 }
             }
             else
@@ -68,15 +66,7 @@ namespace WordSearch.DataStructure
                 }
                 else
                 {
-                    if (word == Right._word)
-                    {
-                        Console.WriteLine("Already added, but heres the result:");
-                        return;
-                    }
-                    else
-                    {
-                        this.Right.Insert(word, result);
-                    }
+                    this.Right.Insert(word, result);
                 }
             }
         }
@@ -99,12 +89,10 @@ namespace WordSearch.DataStructure
 
             if (Left != null)
             {
-                Console.WriteLine("Left Node");
                 Left.PrintNodes();
             }
             if (Right != null)
             {
-                Console.WriteLine("Right Node");
                 Right.PrintNodes();
             }
         }
