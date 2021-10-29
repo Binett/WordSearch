@@ -62,7 +62,7 @@ namespace WordSearch.ProgramFlow
             if (InputMenuChoiche(Console.ReadLine(), out var errorMsg, out var choice))
             {
                 Console.Write("How many words to print: ");
-                if (!InputMenuChoiche(Console.ReadLine(), out errorMsg, out var number))
+                if (InputMenuChoiche(Console.ReadLine(), out errorMsg, out var number))
                 {
                     switch (choice)
                     {
