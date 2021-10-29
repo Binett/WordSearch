@@ -1,6 +1,6 @@
 ﻿using System;
-using static WordSearch.Utitlitys.Seeder;
 using static WordSearch.Utitlitys.InputHelper;
+using static WordSearch.Utitlitys.Seeder;
 
 namespace WordSearch.ProgramFlow
 {
@@ -35,15 +35,19 @@ namespace WordSearch.ProgramFlow
                     case 1:
                         pl.Search();
                         break;
+
                     case 2:
                         pl.PrintResults();
                         break;
+
                     case 3:
                         PrintWordsMenu();
                         break;
+
                     case 4:
                         Environment.Exit(0);
                         break;
+
                     default:
                         Console.WriteLine(!string.IsNullOrEmpty(errorMsg) ? errorMsg : "Enter a number between 1-4");
                         EnterToContinue();
@@ -57,32 +61,54 @@ namespace WordSearch.ProgramFlow
         /// </summary>
         private void PrintWordsMenu()
         {
-            Console.Clear();
-            Console.WriteLine("Print words from: \n1. TextOne\n2. TextTwo\n3. TextThree");
-            if (InputMenuChoiche(Console.ReadLine(), out var errorMsg, out var choice))
+            while (true)
             {
-                Console.Write("How many words to print: ");
-                if (InputMenuChoiche(Console.ReadLine(), out errorMsg, out var number))
+                Console.Clear();
+                Console.WriteLine("Print words from: \n1. TextOne\n2. TextTwo\n3. TextThree");
+                if (InputMenuChoiche(Console.ReadLine(), out var errorMsg, out var choice))
                 {
-                    switch (choice)
+                    if (choice <= 0 || choice > 3)
                     {
-                        case 1:
-                            pl.PrintFromList(ListOne, number);
+                        Console.WriteLine("Enter a valid menu choice");
+                    }
+                    else
+                    {
+                        Console.Write("How many words to print: ");
+                        if (InputMenuChoiche(Console.ReadLine(), out errorMsg, out var number))
+                        {
+                            switch (choice)
+                            {
+                                case 1:
+                                    pl.PrintFromList(ListOne, number);
+                                    break;
+
+                                case 2:
+                                    pl.PrintFromList(ListTwo, number);
+                                    break;
+
+                                case 3:
+                                    pl.PrintFromList(ListThree, number);
+                                    break;
+
+                                default:
+                                    Console.WriteLine(errorMsg);
+                                    break;
+                            }
+                            EnterToContinue();
                             break;
-                        case 2:
-                            pl.PrintFromList(ListTwo, number);
-                            break;
-                        case 3:
-                            pl.PrintFromList(ListThree, number);
-                            break;
-                        default:
+                        }
+                        else
+                        {
                             Console.WriteLine(errorMsg);
-                            break;
+                        }
                     }
                 }
+                else
+                {
+                    Console.WriteLine(errorMsg);
+                }
+                Console.ReadLine();
             }
-            Console.ReadLine();
-            Console.WriteLine(errorMsg);
         }
     }
 }
