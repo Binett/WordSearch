@@ -45,8 +45,8 @@ namespace WordSearch.ProgramFlow
                         Environment.Exit(0);
                         break;
                     default:
-                        Console.WriteLine(errorMsg);
-                        Console.ReadLine();
+                        Console.WriteLine(!string.IsNullOrEmpty(errorMsg) ? errorMsg : "Enter a number between 1-4");
+                        EnterToContinue();
                         break;
                 }
             }
@@ -62,7 +62,8 @@ namespace WordSearch.ProgramFlow
             if (InputMenuChoiche(Console.ReadLine(), out var errorMsg, out var choice))
             {
                 Console.Write("How many words to print: ");
-                if(InputMenuChoiche(Console.ReadLine(), out  errorMsg, out var number)){
+                if (!InputMenuChoiche(Console.ReadLine(), out errorMsg, out var number))
+                {
                     switch (choice)
                     {
                         case 1:
